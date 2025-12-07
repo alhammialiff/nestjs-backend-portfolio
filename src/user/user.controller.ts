@@ -17,6 +17,7 @@ export class UserController {
         // Invoke userService's getUserById
         const user = await this.userService.getUserById(userId);
         
+        // [Response] Should return a response later
         return user;
 
     }

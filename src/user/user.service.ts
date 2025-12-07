@@ -3,39 +3,31 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { User } from 'src/model/user.model';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaUserRepository } from 'src/repositories/user/prisma-user.repository';
 
+
+/**
+ * Service layer to communicate with User Repository layer for User table data access 
+ * Controller -> Service -> Repository -> DB
+ */
 @Injectable()
 export class UserService {
 
-    constructor(private prismaService: PrismaService){}
+    constructor(
+        private userPrismaRepository: PrismaUserRepository
+    ){}
 
     /**
-     * 
-     * @param userId 
-     * @returns User Object
-     */
+    * Get User By Id (prototype only) 
+    * Returns internal User object, not to be mistaken with UserDTO(WIP)
+    */
     async getUserById(userId: string): Promise<User | null>{
 
-        // Invoke prisma and call DB
-        const user = await this.prismaService.user.findUnique({
-            where:{
-                id: userId
-            }
-        });
+        // Invoke repository to there after call DB
+        const user: User | null = await this.userPrismaRepository.getUserById(userId);
 
-        // [Return] Null if no row found
-        if(!user){
-            return null;
-        }
-
-        // [Return] User if found
-        return {
-            id: user.id,
-            userName: user.username,
-            fullName: user.fullname,
-            password: user.password
-        };
+        // [Return] User
+        return user;
 
     }
 
