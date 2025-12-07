@@ -20,9 +20,9 @@ export class MqttController {
      * Really depends on the org's dev standards and practices
      */
     @MessagePattern(process.env.MQTT_TOPIC_1)
-    subscribeDevice1Data(
+    async subscribeDevice1Data(
         @Ctx() context: MqttContext
-    ): MqttResponse{
+    ): Promise<MqttResponse>{
 
         const mqttResponse = this.mqttService.handleMessage(context);
         
@@ -30,5 +30,7 @@ export class MqttController {
         return mqttResponse;
 
     }
+
+
 
 }
