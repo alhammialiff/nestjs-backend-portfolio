@@ -1,6 +1,7 @@
 export interface MqttResponse {
     ok: boolean;
     topic: string;
-    payload: any;
-    qos: number;
+    payload: string | null;
+    qos: number | null;
+    error?: string | null;
 }

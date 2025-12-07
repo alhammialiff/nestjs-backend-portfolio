@@ -9,3 +9,13 @@ export interface User {
     fullName: string;
     password: string;
 }
+
+/**
+ * Public object to be used for response to client
+ * UserDTO
+ */
+export interface UserDTO {
+    id: string;
+    userName: string;
+    fullName: string;
+}

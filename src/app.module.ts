@@ -12,6 +12,7 @@ import { PrismaModule } from './prisma/prisma.module';
 //import { PrismaService } from './prisma/prisma.service';
 //import { PrismaUserRepository } from './repositories/user/prisma-user.repository';
 //import { DeviceDataMongoRepository } from './repositories/deviceData/device-data-mongo.repository';
+import { ErrorModule } from './error/error.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { PrismaModule } from './prisma/prisma.module';
     MongooseModule.forRoot(process.env.MONGODB_URI!),
     MongoModule,
     MqttModule,
-    PrismaModule
+    PrismaModule,
+    ErrorModule
   ],
   controllers: [
     AppController, 

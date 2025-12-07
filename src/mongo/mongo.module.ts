@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DeviceData, DeviceDataSchema } from 'mongodb/deviceData.schema';
+import { ErrorModule } from 'src/error/error.module';
 import { DeviceDataMongoRepository } from 'src/repositories/deviceData/device-data-mongo.repository';
 
 /**
@@ -10,7 +11,8 @@ import { DeviceDataMongoRepository } from 'src/repositories/deviceData/device-da
     imports: [
         MongooseModule.forFeature([
             { name: DeviceData.name, schema: DeviceDataSchema }
-        ])
+        ]),
+        ErrorModule
     ],
     providers: [DeviceDataMongoRepository],
     controllers: [],

@@ -1,1 +1,6 @@
+### [User by ID] Good Request
 GET http://localhost:3000/user/02134aee-6e6b-449a-a938-7c4445291bc6
+
+
+### [User by ID] Bad Request
+GET http://localhost:3000/user/bad-user-request

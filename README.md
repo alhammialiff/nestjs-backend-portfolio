@@ -5,8 +5,25 @@ This is a quick prototype to showcase ability working in Nest.js environment. Wh
 At this point of commit, Nest.js serves to talk to two data sources and two DBs. They are -:
 
 ### Data Sources
-- Relational User Data from Local SQL DB
-- Non-relational Device Data from HiveMQ's Public Broker to MongoDB Atlas Cloud
+1. Relational User Data from Local SQL DB
+
+#### Fig 1. Getting User By ID from User Entity in Local SQL DB
+<p align="center">
+  <img src="./docs/images/local-sql-example.png" alt="Local SQL Data Example" width="600">
+</p>
+
+
+2. Non-relational Device Data from HiveMQ's Public Broker to MongoDB Atlas Cloud
+
+#### Fig 2. Message Publish from Hive MQ
+<p align="center">
+  <img src="./docs/images/hive-mq-subscription.png" alt="Hive MQ Subscription Example" width="600">
+</p>
+
+#### Fig 3. Message stored in MongoDB Atlas
+<p align="center">
+  <img src="./docs/images/mongo-db-atlas.png" alt="Mongo DB Atlas Example" width="600">
+</p>
 
 This prototype is a weekender work, but eventually it should showcase these implementations -:
 
