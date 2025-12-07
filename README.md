@@ -5,9 +5,9 @@ This is a quick prototype to showcase ability working in Nest.js environment. Wh
  - [X] Scaffolding Relational DB containing User table and a Test User
  - [X] Relational Data Access via ORM (Prisma 5.14.0)
  - [X] MQTT Topic subscription handling
- - [] Non-relational Data Access via ORM for MQTT Topics
- - [] JWT Authentication
- - [] Salted Hash Authentication Handling
+ - [ ] Non-relational Data Access via ORM for MQTT Topics
+ - [ ] JWT Authentication
+ - [ ] Salted Hash Authentication Handling
  
 ## Project setup
 
