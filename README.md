@@ -31,8 +31,8 @@ This prototype is a weekender work, but eventually it should showcase these impl
  - [X] Relational Data Access via ORM (Prisma 5.14.0)
  - [X] MQTT Topic subscription handling
  - [X] Non-relational Data Access via ORM for MQTT Topics (Mongoose 8.20.2)
+ - [X] Salted Hash Authentication Handling
  - [ ] JWT Authentication
- - [ ] Salted Hash Authentication Handling
  - [ ] Foundational CRUD
 
 ## Project setup
