@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { BadRequestException, Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { LoginDto } from 'src/model/loginDto.model';
@@ -52,7 +55,7 @@ export class ValidateUser implements NestMiddleware{
             throw new BadRequestException('Authentication Failure');
         }
 
-        const passwordsMatch = user.password === password;
+        const passwordsMatch = await bcrypt.compare(password, user.password);
 
         // [Early Bail] Password incorrect
         if(!passwordsMatch){
