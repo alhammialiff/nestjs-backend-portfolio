@@ -4,6 +4,7 @@ import { LoginDto } from 'src/model/loginDto.model';
 import { UserService } from 'src/user/user.service';
 import { User, UserDto } from 'src/model/user.model';
 import { HttpOkResponse } from 'src/model/httpResponse.model';
+import * as bcrypt from 'bcrypt';
 
 /**
  * Validates LoginDTO received from client
