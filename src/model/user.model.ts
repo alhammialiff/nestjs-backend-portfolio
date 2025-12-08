@@ -14,7 +14,7 @@ export interface User {
  * Public object to be used for response to client
  * UserDTO
  */
-export interface UserDTO {
+export interface UserDto {
     id: string;
     userName: string;
     fullName: string;

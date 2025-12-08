@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Logger } from '@nestjs/common';
 import { Ctx, MessagePattern, MqttContext } from '@nestjs/microservices';
 
 import type { MqttResponse } from 'src/model/mqttResponse.model';
@@ -10,6 +10,8 @@ import { MqttService } from './mqtt.service';
  */
 @Controller()
 export class MqttController {
+
+    logger: Logger = new Logger();
 
     constructor(private mqttService: MqttService){}
 
@@ -34,14 +36,22 @@ export class MqttController {
 
         const mqttResponse = await this.mqttService.handleMessage(context);
 
+        this.logger.log(`[MQTT ${process.env.MQTT_TOPIC_1}] completed. Relaying MQTT Message...`);
+
         // Only publish if MQTT Response is OK
         if((mqttResponse as MqttResponse).ok){
             
+            this.logger.log(`[MQTT Pub ${process.env.MQTT_RELAY_TOPIC_1}] MqttResponse Ok. Publishing...`);
+
             this.mqttService.publishMessage(
                 process.env.MQTT_RELAY_TOPIC_1!, 
                 mqttResponse as MqttResponse
             );
         
+        }else{
+
+            this.logger.log(`[MQTT Pub ${process.env.MQTT_RELAY_TOPIC_1}] MqttResponse not OK. Skipping Pub...`);
+
         }
 
     }

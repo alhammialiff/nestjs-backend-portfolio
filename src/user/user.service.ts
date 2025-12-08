@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 import { HttpException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ErrorService } from 'src/error/error.service';
-import { User, UserDTO } from 'src/model/user.model';
+import { User, UserDto } from 'src/model/user.model';
 import { PrismaUserRepository } from 'src/repositories/user/prisma-user.repository';
 
 
@@ -25,7 +25,7 @@ export class UserService {
     * Get User By Id (prototype only) 
     * Returns internal User object, not to be mistaken with UserDTO(WIP)
     */
-    async getUserById(userId: string): Promise<UserDTO | null | HttpException>{
+    async getUserById(userId: string): Promise<UserDto | null | HttpException>{
         
         try{
 
@@ -35,16 +35,22 @@ export class UserService {
             // [Early Bail]
             if(!user){
 
+                // [Log]
+                this.logger.log("[POST User By ID] User Not Found");
+                
                 throw new NotFoundException('User Not Found');
                 
             }
     
             // Hydrate UserDTO 
-            const userDTO: UserDTO = {
+            const userDTO: UserDto = {
                 id: user.id,
                 userName: user.userName,
                 fullName: user.fullName,
             };
+
+            // [Log]
+            this.logger.log("[POST User By ID] User Found and Hydrated. Returning userDTO");
     
             // [Return] User
             return userDTO;
@@ -65,6 +71,14 @@ export class UserService {
             );
 
         }
+
+    }
+
+    async getUserByUsername(username: string): Promise<User | null>{
+
+        const user: User | null = await this.userPrismaRepository.getUserByUsername(username);
+
+        return user;
 
     }
 

@@ -9,7 +9,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 async function bootstrap() {
 
   // Bootstrapping RESTful backend
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { bodyParser: true });
   
   // Bootstrapping MQTT Microservice
   app.connectMicroservice<MicroserviceOptions>({

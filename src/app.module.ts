@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -13,6 +13,7 @@ import { PrismaModule } from './prisma/prisma.module';
 //import { PrismaUserRepository } from './repositories/user/prisma-user.repository';
 //import { DeviceDataMongoRepository } from './repositories/deviceData/device-data-mongo.repository';
 import { ErrorModule } from './error/error.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { ErrorModule } from './error/error.module';
     MongoModule,
     MqttModule,
     PrismaModule,
-    ErrorModule
+    ErrorModule,
+    AuthModule
   ],
   controllers: [
     AppController, 
@@ -32,4 +34,4 @@ import { ErrorModule } from './error/error.module';
     UserService
   ],
 })
-export class AppModule {}
+export class AppModule{}

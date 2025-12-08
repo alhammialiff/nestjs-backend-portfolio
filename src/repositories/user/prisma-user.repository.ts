@@ -59,4 +59,40 @@ export class PrismaUserRepository {
 
     }
 
+    // Get User By Username
+    async getUserByUsername(username: string): Promise<User | null> {
+
+        try{
+
+            const user = await this.prismaService.user.findFirst({
+                where: {
+                    username: username
+                }
+            });
+
+            // [Early Bail] User not found
+            if(!user){
+                return null;
+            }
+
+            // [Return] User if found
+            return {
+                id: user.id,
+                userName: user.username,
+                fullName: user.fullname,
+                password: user.password
+            } as User;
+
+        }catch(e: unknown){
+
+            // [Log]
+            const errorLog = this.errorService.handleErrorForInternalLogging(e);
+            this.logger.error(errorLog.errorMessage);
+
+            return null;
+
+        }
+
+    }
+
 }
