@@ -1,12 +1,16 @@
-### [User by ID] Good Request
-GET http://localhost:3000/user/02134aee-6e6b-449a-a938-7c4445291bc6
+@host = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMjEzNGFlZS02ZTZiLTQ0OWEtYTkzOC03YzQ0NDUyOTFiYzYiLCJhdWQiOiJqb2huZHVkZSIsImlhdCI6MTc2NTI5NTkzNSwiZXhwIjoxNzY1Mjk1OTQ1fQ.dHZKdEKbMYx_PGgQLu_owzEoCHMe9dVXBEhuo4QnrhM
+
+### [User by ID] Good Request but only if token has not expired
+GET {{host}}/user/02134aee-6e6b-449a-a938-7c4445291bc6
+Authorization: Bearer {{token}}
 
 
 ### [User by ID] Bad Request
-GET http://localhost:3000/user/bad-user-request
+GET {{host}}/user/bad-user-request
 
 ### [Login] Auth OK
-POST http://localhost:3000/auth/login
+POST {{host}}/auth/login
 Content-Type: application/json
 
 {
@@ -15,7 +19,7 @@ Content-Type: application/json
 }
 
 ### [Login] Auth fail
-POST http://localhost:3000/auth/login
+POST {{host}}/auth/login
 Content-Type: application/json
 
 {

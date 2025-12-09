@@ -18,4 +18,11 @@ export interface UserDto {
     id: string;
     userName: string;
     fullName: string;
+    token?: string;
+    authUser?: AuthUser;
+};
+
+export interface AuthUser {
+    id: string;
+    username: string;
 }

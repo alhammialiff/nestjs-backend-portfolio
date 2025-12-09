@@ -8,6 +8,8 @@ import { UserService } from 'src/user/user.service';
 import { User, UserDto } from 'src/model/user.model';
 import { HttpOkResponse } from 'src/model/httpResponse.model';
 import * as bcrypt from 'bcrypt';
+import { AuthService } from './auth.service';
+import { JwtTokenPayload } from 'src/model/jwt.model';
 
 /**
  * Validates LoginDTO received from client
@@ -42,7 +44,9 @@ export class ValidateLoginDtoMiddleware implements NestMiddleware {
 @Injectable()
 export class ValidateUser implements NestMiddleware{
 
-    constructor(private userService: UserService){}
+    constructor(private userService: UserService,
+        private authService: AuthService
+    ){}
 
     async use(req: Request, res: Response){
 
@@ -62,16 +66,31 @@ export class ValidateUser implements NestMiddleware{
             throw new BadRequestException('Authentication Failure')
         }
 
+
+
+        // Set JWT Payload for token generation
+        const jwtPayload: JwtTokenPayload = {
+            sub: user.id,
+            aud: user.userName,
+            iat: Math.floor(Date.now() / 1000)
+            // To add more like roles, aud etc.
+        }
+
+        // Generate JWT Token for user
+        const jwtToken = this.authService.issueJwtToken(jwtPayload)
+
+        // Append token to httpOkResponse
         const httpOkResponse: HttpOkResponse<UserDto> = {
             ok: true,
             data: {
                 id: user.id,
                 userName: user.userName,
                 fullName: user.fullName,
+                token: jwtToken
             },
             message: 'Authenticated'
         };
-
+        
         // [Return] Ok
         return res.status(200).json(httpOkResponse);
 

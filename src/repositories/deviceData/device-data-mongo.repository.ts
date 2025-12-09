@@ -18,6 +18,9 @@ export class DeviceDataMongoRepository {
     async create(deviceData: MqttResponse){
 
         try{
+
+            // [Log]
+            this.logger.log(`[MongoDB DeviceData] Commence document creation...`);
             
             return await this.deviceData.create({
                 ...deviceData

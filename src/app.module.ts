@@ -14,6 +14,7 @@ import { PrismaModule } from './prisma/prisma.module';
 //import { DeviceDataMongoRepository } from './repositories/deviceData/device-data-mongo.repository';
 import { ErrorModule } from './error/error.module';
 import { AuthModule } from './auth/auth.module';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { AuthModule } from './auth/auth.module';
   ],
   providers: [
     AppService, 
-    UserService
+    UserService, JwtStrategy
   ],
 })
 export class AppModule{}

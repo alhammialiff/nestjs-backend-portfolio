@@ -96,10 +96,11 @@ export class MqttService {
 
         try{
 
-            this.pubClient.publish(mqttTopic, JSON.stringify(hydratedMqttMessage), { qos: 0 });
-        
             // [Log]
             this.logger.log(`[MQTT Publisher] Commence publishing at ${mqttTopic}`);
+            
+            this.pubClient.publish(mqttTopic, JSON.stringify(hydratedMqttMessage), { qos: 0 });
+        
         
         }catch(e: unknown){
 
