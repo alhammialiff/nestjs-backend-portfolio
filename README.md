@@ -37,7 +37,7 @@ At this point of commit, Nest.js serves to talk to two data sources and two DBs.
 </p>
 
 
-#### 3. JWT Authentication Guard
+#### 3. JWT Authentication & Auth Guards
 
 ##### Fig 4. Token issued on successful login
 <p align="center">
