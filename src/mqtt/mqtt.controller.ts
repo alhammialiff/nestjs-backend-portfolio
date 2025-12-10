@@ -1,3 +1,4 @@
+import { HealthStreamGateway } from './../websocket/health-stream/health-stream.gateway';
 import { Controller, Logger } from '@nestjs/common';
 import { Ctx, MessagePattern, MqttContext } from '@nestjs/microservices';
 
@@ -13,7 +14,9 @@ export class MqttController {
 
     logger: Logger = new Logger();
 
-    constructor(private mqttService: MqttService){}
+    constructor(private mqttService: MqttService,
+        private healthStreamGateway: HealthStreamGateway
+    ){}
 
     /**
      * MQTT_TOPIC_1 (for sake of portfolio): 
@@ -43,11 +46,18 @@ export class MqttController {
             
             this.logger.log(`[MQTT Pub ${process.env.MQTT_RELAY_TOPIC_1}] MqttResponse Ok. Publishing...`);
 
+            // [Relay] Publish to other subscribers
             this.mqttService.publishMessage(
                 process.env.MQTT_RELAY_TOPIC_1!, 
                 mqttResponse as MqttResponse
             );
-        
+
+            // [Relay] Publish to websocket clients
+            this.healthStreamGateway.handleMessage(
+                `${process.env.MQTT_RELAY_TOPIC_1}`,
+                mqttResponse
+            );
+
         }else{
 
             this.logger.log(`[MQTT Pub ${process.env.MQTT_RELAY_TOPIC_1}] MqttResponse not OK. Skipping Pub...`);

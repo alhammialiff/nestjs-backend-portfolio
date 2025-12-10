@@ -10,7 +10,8 @@ This prototype is a weekender work, but eventually it should showcase these impl
  - [X] Non-relational Data Access via ORM for MQTT Topics (Mongoose 8.20.2)
  - [X] Salted Hash Authentication Handling
  - [X] JWT Authentication
- - [ ] Foundational CRUD
+ - [X] Relaying MQTT Message to client via Websocket
+ - [ ] Foundational RESTful CRUD API
 
 At this point of commit, Nest.js serves to talk to two data sources and two DBs. They are -:
 
@@ -37,22 +38,37 @@ At this point of commit, Nest.js serves to talk to two data sources and two DBs.
 </p>
 
 
-#### 3. JWT Authentication & Auth Guards
+#### 3. Relaying MQTT Message to a Websocket Client
 
-##### Fig 4. Token issued on successful login
+##### Fig 4. Nest.js relaying MQTT data via Websocket
+<p align="center">
+  <img src="./docs/images/nest-js-websocket--receive-client-and-send-mqtt-data.png" alt="Mongo DB Atlas Example" width="600">
+</p>
+
+##### Fig 5. Client receiving MQTT data via Websocket
+<p align="center">
+  <img src="./docs/images/websocket-client-connect-and-receive-mqtt-data.png" alt="Mongo DB Atlas Example" width="600">
+</p>
+
+
+#### 4. JWT Authentication & Auth Guards
+
+##### Fig 6. Token issued on successful login
 <p align="center">
   <img src="./docs/images/login-with-issued-jwt-token.png" alt="Hive MQ Subscription Example" width="600">
 </p>
 
-##### Fig 5. 200 on guarded route request when token is still alive
+##### Fig 7. 200 on guarded route request when token is still alive
 <p align="center">
   <img src="./docs/images/auth-guarded-route-response-with-auth-user.png" alt="Mongo DB Atlas Example" width="600">
 </p>
 
-##### Fig 6. 401 on guarded route request when token has expired
+##### Fig 8. 401 on guarded route request when token has expired
 <p align="center">
   <img src="./docs/images/auth-guarded-route-with-unauth-response-on-token-expiry.png" alt="Mongo DB Atlas Example" width="600">
 </p>
+
+
 
 
 ## Project setup

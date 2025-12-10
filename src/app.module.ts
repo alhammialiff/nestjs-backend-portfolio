@@ -15,6 +15,9 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ErrorModule } from './error/error.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { HealthStreamGateway } from './websocket/health-stream/health-stream.gateway';
+import { WebsocketModule } from './websocket/websocket.module';
+import { TimestampService } from './util/timestamp/timestamp.service';
 
 @Module({
   imports: [
@@ -24,7 +27,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     MqttModule,
     PrismaModule,
     ErrorModule,
-    AuthModule
+    AuthModule,
+    WebsocketModule
   ],
   controllers: [
     AppController, 
@@ -32,7 +36,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   ],
   providers: [
     AppService, 
-    UserService, JwtStrategy
+    UserService, JwtStrategy, HealthStreamGateway, TimestampService
   ],
 })
 export class AppModule{}
