@@ -11,7 +11,8 @@ This prototype is a weekender work, but eventually it should showcase these impl
  - [X] Salted Hash Authentication Handling
  - [X] JWT Authentication
  - [X] Relaying MQTT Message to client via Websocket
- - [ ] Foundational RESTful CRUD API
+ - [X] Client-triggered request to create job into RabbitMQ
+ - [ ] Development of worker to handle jobs from RabbitMQ in parallel
 
 At this point of commit, Nest.js serves to talk to two data sources and two DBs. They are -:
 
@@ -69,6 +70,22 @@ At this point of commit, Nest.js serves to talk to two data sources and two DBs.
 </p>
 
 
+### 5. Client-triggered job creation into RabbitMQ
+
+##### Fig 9. POST /job/create response
+<p align="center">
+  <img src="./docs/images/client-triggered-job-creation-successful-response.png" alt="Client-triggered job creation into RabbitMQ succesful response" width="600">
+</p>
+
+##### Fig 10. Rabbit MQ Manager receiving the Job ID payload for worker's consumption
+<p align="center">
+  <img src="./docs/images/client-triggered-job-creation-into-rmq.png" alt="Client-triggered job creation into RabbitMQ" width="600">
+</p>
+
+
+### 6. Workers consuming jobs from RabbitMQ
+
+- WIP
 
 
 ## Project setup

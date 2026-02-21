@@ -35,6 +35,8 @@
     "@nestjs/platform-socket.io": "^11.1.9",
     "@nestjs/websockets": "^11.1.9",
     "@prisma/client": "^5.14.0",
+    "amqp-connection-manager": "^5.0.0",
+    "amqplib": "^0.10.9",
     "bcrypt": "^6.0.0",
     "mongoose": "^8.20.2",
     "mqtt": "^5.14.1",

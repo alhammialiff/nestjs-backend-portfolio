@@ -29,7 +29,7 @@ export class UserService {
         
         try{
 
-            // Invoke repository to there after call DB
+            // Invoke repository to get user
             const user: User | null = await this.userPrismaRepository.getUserById(userId);
             
             // [Early Bail]
@@ -37,7 +37,6 @@ export class UserService {
 
                 // [Log]
                 this.logger.log("[POST User By ID] User Not Found");
-                
                 throw new NotFoundException('User Not Found');
                 
             }

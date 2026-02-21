@@ -18,25 +18,45 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { HealthStreamGateway } from './websocket/health-stream/health-stream.gateway';
 import { WebsocketModule } from './websocket/websocket.module';
 import { TimestampService } from './util/timestamp/timestamp.service';
+import { JobModule } from './job/job.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true}),
     MongooseModule.forRoot(process.env.MONGODB_URI!),
-    MongoModule,
+    
+    /* Handles MongoDB */
+    MongoModule, 
+
+    /* Handles MQTT */
     MqttModule,
+
+    /* Handles Relational DB */
     PrismaModule,
+
+    /* Handles Errors */
     ErrorModule,
+
+    /* Handles Authentication */
     AuthModule,
-    WebsocketModule
+
+    /* Handles Websockets */
+    WebsocketModule,
+
+    /* Handles Job-related activities with RabbitMQ */
+    JobModule
+    
   ],
   controllers: [
     AppController, 
-    UserController
+    UserController, 
   ],
   providers: [
     AppService, 
-    UserService, JwtStrategy, HealthStreamGateway, TimestampService
+    UserService, 
+    JwtStrategy, 
+    HealthStreamGateway, 
+    TimestampService
   ],
 })
 export class AppModule{}

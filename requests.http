@@ -26,3 +26,11 @@ Content-Type: application/json
     "username":"johndude",
     "password":"notthekey" 
 }
+
+### [Create Job] Create Job in RabbitMQ queue
+POST {{host}}/job/create
+Content-Type: application/json
+
+{
+    "requestedBy": "johndude"
+}
