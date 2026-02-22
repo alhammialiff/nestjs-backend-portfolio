@@ -1,6 +1,8 @@
+import { TimestampService } from 'src/util/timestamp/timestamp.service';
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { JobController } from './job.controller';
+import { IdGeneratorService } from 'src/util/id/id-generator.service';
 
 @Module({
     imports: [
@@ -26,6 +28,7 @@ import { JobController } from './job.controller';
             }
         ])
     ],
+    providers: [TimestampService, IdGeneratorService],
     controllers: [JobController]
 })
 export class JobModule {}

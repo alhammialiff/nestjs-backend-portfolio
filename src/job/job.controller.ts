@@ -1,6 +1,7 @@
+import { IdGeneratorService } from '../util/id/id-generator.service';
 import { BadRequestException, Body, Controller, Inject, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { randomUUID } from 'crypto';
+// import { randomUUID } from 'crypto';
 import { CreateJobRequest } from 'src/model/createJobRequest.model';
 
 @Controller('job')
@@ -8,7 +9,8 @@ export class JobController {
 
     constructor(
         @Inject('JOB_QUEUE_CLIENT')
-        private readonly jobQueueClient: ClientProxy
+        private readonly jobQueueClient: ClientProxy,
+        private readonly idGeneratorService: IdGeneratorService
     ){}
 
     /*
@@ -31,7 +33,7 @@ export class JobController {
             throw new BadRequestException('User invalid'); 
         }
 
-        const jobId = `JOB-${randomUUID()}`
+        const jobId = `JOB-${this.idGeneratorService.generateTimestampIncrementalId()}`
 
         // Send job to RabbitMQ Job Queue
         // job.create - event name (not queue name)

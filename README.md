@@ -1,6 +1,6 @@
 ## Description
 
-This is a quick prototype to showcase ability working in Nest.js environment. What I love about working with Nest.js is the MVC architectural pattern and how almost identical it is to Angular. 
+This began as a quick prototype to showcase ability working in Nest.js, MQTT, NoSQL and Websocket. As at this point in writing (it's Feb 2026 - time flies), I have expanded my scope to include parallel compute thru implementing RabbitMQ as a job queue and Python Workers as multi processors.
 
 This prototype is a weekender work, but eventually it should showcase these implementations -:
 
@@ -12,7 +12,7 @@ This prototype is a weekender work, but eventually it should showcase these impl
  - [X] JWT Authentication
  - [X] Relaying MQTT Message to client via Websocket
  - [X] Client-triggered request to create job into RabbitMQ
- - [ ] Development of worker to handle jobs from RabbitMQ in parallel
+ - [X] Development of worker to handle jobs from RabbitMQ in parallel
 
 At this point of commit, Nest.js serves to talk to two data sources and two DBs. They are -:
 
@@ -85,7 +85,16 @@ At this point of commit, Nest.js serves to talk to two data sources and two DBs.
 
 ### 6. Workers consuming jobs from RabbitMQ
 
-- WIP
+##### Fig 11. Two Python Workers connected to RabbitMQ queue (Consumers)
+<p align="center">
+  <img src="./docs/images/workers-establishing-conn-with-rabbitmq-queue.png" alt="Client-triggered job creation into RabbitMQ" width="600">
+</p>
+
+##### Fig 12. Two Python Workers spawned to process jobs from RabbitMQ queue in parallel
+<p align="center">
+  <img src="./docs/images/workers-performing-jobs-in-parallel.png" alt="Client-triggered job creation into RabbitMQ" width="600">
+</p>
+
 
 
 ## Project setup

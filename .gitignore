@@ -42,6 +42,9 @@ lerna-debug.log*
 .env.production.local
 .env.local
 
+# Python venv
+.venv
+
 # temp directory
 .temp
 .tmp
